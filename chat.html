@@ -19,8 +19,8 @@
     <h1>🤖 LingoFlow AI</h1>
     <div id="chat"></div>
     <div class="flex">
-        <input type="text" id="prompt" placeholder="Tanya tentang bahasa atau apa saja...">
-        <button onclick="sendMessage()">Kirim</button>
+        <input type="text" id="prompt" placeholder="Ask about languages or anything...">
+        <button onclick="sendMessage()">Send</button>
     </div>
 
     <script>
@@ -31,7 +31,7 @@
             if (!prompt) return;
 
             let chatDiv = document.getElementById("chat");
-            chatDiv.innerHTML += `<div class="user"><strong>Kamu:</strong> ${prompt}</div>`;
+            chatDiv.innerHTML += `<div class="user"><strong>You:</strong> ${prompt}</div>`;
             document.getElementById("prompt").value = "";
 
             try {
@@ -50,7 +50,7 @@
                 let reply = data.choices[0].message.content;
                 chatDiv.innerHTML += `<div class="ai"><strong>LingoFlow:</strong> ${reply}</div>`;
             } catch (error) {
-                chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> Cek koneksi atau API Key!</div>`;
+                chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> Check connection or API Key!</div>`;
             }
             chatDiv.scrollTop = chatDiv.scrollHeight;
         }
