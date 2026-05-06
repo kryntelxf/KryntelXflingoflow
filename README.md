@@ -1,6 +1,6 @@
-# 🌍 LingoFlow – AI Language Learning Platform (Fork by KryntelX)
+# 🌍 Linguamorph AI – AI Language Learning Platform (Fork by KryntelX)
 
-**LingoFlow** is a modular, AI-powered language learning app that evolves independently. It combines an interactive 3D globe with API-driven language modules, automatic system language detection, premium features, design customization, and monetization.
+**Linguamorph AI** is a modular, AI-powered language learning app that evolves independently. It combines an interactive 3D globe with API-driven language modules, automatic system language detection, premium features, design customization, and monetization.
 
 ---
 
@@ -35,7 +35,7 @@ An app that:
 - Only visible for premium users
 
 ### DEVELOPER PREMIUM ACCESS
-- Secret key: `LINGOFLOW-KRYNTELXF-UNLOCK-2026`
+- Secret key: `LINGUAMORPH-KRYNTELXF-UNLOCK-2026`
 - Activates all premium features just for you
 - Secure, hidden, stored locally
 
@@ -55,7 +55,7 @@ An app that:
 ## 📁 Project Structure
 
 ```
-lingoflow/ 
+linguamorph/ 
 ├── index.html
 ├── style.css
 ├── main.js
@@ -70,6 +70,8 @@ lingoflow/
 │   │   ├── three.module.js
 │   │   ├── OrbitControls.js
 ```
+
+
 
 ---
 
@@ -107,7 +109,6 @@ lingoflow/
 
 The app regularly queries:
 
-
 ```js
 fetch("/api/languages")
   .then(res => res.json())
@@ -117,35 +118,9 @@ fetch("/api/languages")
 → New languages, modules, and content appear automatically
 → AI models can be hosted locally or remotely
 
----
-
-## 📦 Dependencies
-
-- Three.js (3D Globe)
-- OrbitControls (Touch Control)
-- Unsplash API (Images)
-- DALL·E Mini (Image Generation)
-- Whisper (Pronunciation)
-- Mistral 7B (Grammar/Dialogue)
-- Coqui TTS (Text-to-Speech)
-- FastAPI (Backend)
-
----
-
-## 🔐 Activate Developer Access
-
-```js
-localStorage.setItem("premiumKey", "LINGOFLOW-KRYNTELXF-UNLOCK-2026");
-```
-
-→ Premium mode is automatically activated  
-→ Only you have access
-
----
-
 ## 📣 Status
 
 ✅ Architecture defined  
 ✅ AI models researched  
 ✅ Monetization planned   
-🔜 Project forked and renamed to LingoFlow
+🔜 Project forked and renamed to Linguamorph AI
