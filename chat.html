@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LingoFlow AI Chat</title>
+    <title>Linguamorph AI Chat</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-    <h1>🤖 LingoFlow AI</h1>
+    <h1>🤖 Linguamorph AI</h1>
     <div id="chat"></div>
     <div class="flex">
         <input type="text" id="prompt" placeholder="Ask about languages or anything...">
@@ -48,7 +48,7 @@
                 });
                 let data = await response.json();
                 let reply = data.choices[0].message.content;
-                chatDiv.innerHTML += `<div class="ai"><strong>LingoFlow:</strong> ${reply}</div>`;
+                chatDiv.innerHTML += `<div class="ai"><strong>Linguamorph AI:</strong> ${reply}</div>`;
             } catch (error) {
                 chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> Check connection or API Key!</div>`;
             }
