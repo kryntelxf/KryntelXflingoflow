@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LingoFlow AI Chat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: system-ui; max-width: 800px; margin: auto; padding: 20px; background: #0f172a; color: white; }
+        #chat { background: #1e293b; padding: 20px; border-radius: 20px; height: 60vh; overflow-y: auto; margin-bottom: 20px; }
+        .user { text-align: right; color: #94a3b8; margin: 10px 0; }
+        .ai { background: #334155; padding: 10px; border-radius: 15px; margin: 10px 0; }
+        input, button { padding: 12px; font-size: 16px; border-radius: 30px; border: none; }
+        input { flex: 1; background: #334155; color: white; }
+        button { background: #3b82f6; color: white; font-weight: bold; }
+        .flex { display: flex; gap: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🤖 LingoFlow AI</h1>
+    <div id="chat"></div>
+    <div class="flex">
+        <input type="text" id="prompt" placeholder="Tanya tentang bahasa atau apa saja...">
+        <button onclick="sendMessage()">Kirim</button>
+    </div>
+
+    <script>
+        const OPENROUTER_KEY = "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";
+
+        async function sendMessage() {
+            let prompt = document.getElementById("prompt").value;
+            if (!prompt) return;
+
+            let chatDiv = document.getElementById("chat");
+            chatDiv.innerHTML += `<div class="user"><strong>Kamu:</strong> ${prompt}</div>`;
+            document.getElementById("prompt").value = "";
+
+            try {
+                let response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${OPENROUTER_KEY}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "model": "deepseek/deepseek-v4-flash:free",
+                        "messages": [{"role": "user", "content": prompt}]
+                    })
+                });
+                let data = await response.json();
+                let reply = data.choices[0].message.content;
+                chatDiv.innerHTML += `<div class="ai"><strong>LingoFlow:</strong> ${reply}</div>`;
+            } catch (error) {
+                chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> Cek koneksi atau API Key!</div>`;
+            }
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
