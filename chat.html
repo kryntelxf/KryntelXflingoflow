@@ -48,7 +48,34 @@
                     })
                 });
                 let data = await response.json();
-                let reply = data.choices[0].message.content;
+                try {
+    let response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${OPENROUTER_KEY}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "model": "deepseek/deepseek-v4-flash:free",
+            "messages": [{"role": "user", "content": prompt}]
+        })
+    });
+    
+    let data = await response.json();
+    console.log("Response:", data); // Untuk debugging
+    
+    // Cek apakah ada error dari OpenRouter
+    if (data.error) {
+        throw new Error(data.error.message || "API Error");
+    }
+    
+    // Ambil pesan balasan dengan aman
+    let reply = data.choices?.[0]?.message?.content || "No response from AI";
+    chatDiv.innerHTML += `<div class="ai"><strong>Linguamorph AI:</strong> ${reply}</div>`;
+} catch (error) {
+    console.error("Error detail:", error);
+    chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> ${error.message || "Check your connection or API key!"}</div>`;
+}.message.content;
                 chatDiv.innerHTML += `<div class="ai"><strong>Linguamorph AI:</strong> ${reply}</div>`;
             } catch (error) {
                 chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> ${error.message || "Check your connection or API key!"}</div>`;
