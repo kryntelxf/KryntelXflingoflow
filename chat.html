@@ -24,7 +24,6 @@
     </div>
 
     <script>
-        // GANTI dengan OpenRouter API Key kamu (sk-or-v1-...)
         const OPENROUTER_KEY = "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";
 
         async function sendMessage() {
@@ -47,35 +46,14 @@
                         "messages": [{"role": "user", "content": prompt}]
                     })
                 });
+                
                 let data = await response.json();
-                try {
-    let response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${OPENROUTER_KEY}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "model": "deepseek/deepseek-v4-flash:free",
-            "messages": [{"role": "user", "content": prompt}]
-        })
-    });
-    
-    let data = await response.json();
-    console.log("Response:", data); // Untuk debugging
-    
-    // Cek apakah ada error dari OpenRouter
-    if (data.error) {
-        throw new Error(data.error.message || "API Error");
-    }
-    
-    // Ambil pesan balasan dengan aman
-    let reply = data.choices?.[0]?.message?.content || "No response from AI";
-    chatDiv.innerHTML += `<div class="ai"><strong>Linguamorph AI:</strong> ${reply}</div>`;
-} catch (error) {
-    console.error("Error detail:", error);
-    chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> ${error.message || "Check your connection or API key!"}</div>`;
-}.message.content;
+                
+                if (data.error) {
+                    throw new Error(data.error.message || "API Error");
+                }
+                
+                let reply = data.choices?.[0]?.message?.content || "No response from AI";
                 chatDiv.innerHTML += `<div class="ai"><strong>Linguamorph AI:</strong> ${reply}</div>`;
             } catch (error) {
                 chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> ${error.message || "Check your connection or API key!"}</div>`;
