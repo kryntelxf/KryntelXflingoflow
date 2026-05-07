@@ -24,7 +24,8 @@
     </div>
 
     <script>
-        const DEEPSEEK_KEY = "sk-492bb6926ca5487c90c35d2cd82917e0";
+        // GANTI dengan OpenRouter API Key kamu (sk-or-v1-...)
+        const OPENROUTER_KEY = "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";
 
         async function sendMessage() {
             let prompt = document.getElementById("prompt").value;
@@ -35,14 +36,14 @@
             document.getElementById("prompt").value = "";
 
             try {
-                let response = await fetch("https://api.deepseek.com/v1/chat/completions", {
+                let response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${DEEPSEEK_KEY}`,
+                        "Authorization": `Bearer ${OPENROUTER_KEY}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        "model": "deepseek-chat",
+                        "model": "deepseek/deepseek-v4-flash:free",
                         "messages": [{"role": "user", "content": prompt}]
                     })
                 });
@@ -50,7 +51,7 @@
                 let reply = data.choices[0].message.content;
                 chatDiv.innerHTML += `<div class="ai"><strong>Linguamorph AI:</strong> ${reply}</div>`;
             } catch (error) {
-                chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> Check connection or API Key!</div>`;
+                chatDiv.innerHTML += `<div class="ai"><strong>Error:</strong> ${error.message || "Check your connection or API key!"}</div>`;
             }
             chatDiv.scrollTop = chatDiv.scrollHeight;
         }
